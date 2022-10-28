@@ -15,7 +15,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { RatedProps } from 'types';
-import useRated from 'components/Rated/useRated';
+
  
 const RatedG: any = styled("div")(({ theme }: any) =>({  
   backgroundColor: theme.palette["Primary"]["Contrast"],  
@@ -61,14 +61,13 @@ const Rating: any = styled("div")(({ theme }: any) =>({
 }));
  
 function Rated(props: RatedProps): JSX.Element {
-  const {data} = useRated();
-    return (
+  return (
     <RatedG  className={props.className}   >
       <Rated1 >
         {`Rated:`}
           </Rated1>
       <Rating >
-        {data.movie.rated}
+        {props.rated}
           </Rating>
     </RatedG>
   );

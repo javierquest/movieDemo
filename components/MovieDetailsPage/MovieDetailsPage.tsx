@@ -1028,7 +1028,7 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                   }
                   <RateAndRun data={data} >
                     <RatingLang >
-                      <Rated1   />
+                      <Rated1   rated={data.movie.rated}/>
                       <Language1   />
                     </RatingLang>
                     <RunRelease >

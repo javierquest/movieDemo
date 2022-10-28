@@ -13,46 +13,58 @@
 *
 **********************************************************************/
 
+
 export interface RatedProps {
   className?: any;
+  rated: any;
 };
+
 
 export interface GenreProps {
   className?: any;
 };
 
+
 export interface MovieNavbarProps {
   className?: any;
 };
+
 
 export interface TabMobileBtn2Props {
   className?: any;
 };
 
+
 export interface TabDesktopBtn2Props {
   className?: any;
 };
+
 
 export interface TabMobileBtn1Props {
   className?: any;
 };
 
+
 export interface LanguageProps {
   className?: any;
 };
+
 
 export interface MovieCardProps {
   className?: any;
 };
 
+
 export interface MovieFooterProps {
   className?: any;
 };
+
 
 export interface MovieDetailsPageProps {
   className?: any;
   isLoading: any;
 };
+
 
 export interface TabDesktopBtn1Props {
   className?: any;
