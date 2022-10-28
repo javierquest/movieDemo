@@ -1062,13 +1062,13 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                     {((data.size === "desktop")) &&
                       <RtIcon data={data}  src={`assets/images/MovieDetailsPage_rt_icon.png`} alt={"rt_icon"}/>
                     }
-                    {(data.size === "desktop" ? !!data.movie.ratings?.[0] : !!data.movie.ratings?.[1]) &&
+                    {(data.size === "desktop" ? !!data.movie.ratings?.length && data.movie.ratings.some(({ Source }) => Source === 'Rotten Tomatoes') : !!data.movie.ratings?.[1]) &&
                       <RatingRt data={data} >
                         <Q72 >
-                          {((data.size === "desktop" ? data.movie.ratings[0] : data.movie.ratings[1])).Value}
+                          {((data.size === "desktop" ? data.movie.ratings.find(({ Source }) => Source === 'Rotten Tomatoes') : data.movie.ratings[1])).Value}
                             </Q72>
                         <RottenTomatoes >
-                          {((data.size === "desktop" ? data.movie.ratings[0] : data.movie.ratings[1])).Source}
+                          {((data.size === "desktop" ? data.movie.ratings.find(({ Source }) => Source === 'Rotten Tomatoes') : data.movie.ratings[1])).Source}
                             </RottenTomatoes>
                       </RatingRt>
                     }

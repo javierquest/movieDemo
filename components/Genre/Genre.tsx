@@ -29,6 +29,7 @@ const GenreBiography: any = styled("div")(({ theme }: any) =>({
   justifyContent: `flex-start`,  
   alignItems: `flex-start`,  
   padding: `6px 16px`,  
+  width: "100%",  
 }));
   
 const Genre1: any = styled("div")(({ theme }: any) =>({  
@@ -47,11 +48,12 @@ const Genre1: any = styled("div")(({ theme }: any) =>({
  
 function Genre(props: GenreProps): JSX.Element {
   return (
-    <GenreBiography  className={props.className}   >
-      <Genre1 >
-        {`Biography`}
-          </Genre1>
-    </GenreBiography>
+    (props.genre?.length) &&
+      <GenreBiography  className={props.className}   >
+        <Genre1 >
+          {`Biography`}
+            </Genre1>
+      </GenreBiography>
   );
 }
 
