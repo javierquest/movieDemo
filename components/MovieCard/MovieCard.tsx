@@ -47,7 +47,7 @@ const Pic: any = styled("div", {
   alignSelf: `stretch`,  
   height: `138px`,  
   margin: `0px`,  
-  backgroundImage: `url${props.image.filePath}`,  
+  backgroundImage: `url(${props.image.filePath})`,  
 }));
   
 const About: any = styled("div")({  
