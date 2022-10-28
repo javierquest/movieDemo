@@ -15,10 +15,12 @@
 
 
 
+
 export interface RatedProps {
   className?: any;
   rated: any;
 };
+
 
 
 
@@ -28,9 +30,11 @@ export interface GenreProps {
 
 
 
+
 export interface MovieNavbarProps {
   className?: any;
 };
+
 
 
 
@@ -40,15 +44,18 @@ export interface TabMobileBtn2Props {
 
 
 
+
 export interface TabDesktopBtn2Props {
   className?: any;
 };
 
 
 
+
 export interface TabMobileBtn1Props {
   className?: any;
 };
+
 
 
 
@@ -59,9 +66,11 @@ export interface LanguageProps {
 
 
 
+
 export interface MovieCardProps {
   className?: any;
 };
+
 
 
 
@@ -71,10 +80,12 @@ export interface MovieFooterProps {
 
 
 
+
 export interface MovieDetailsPageProps {
   className?: any;
   isLoading: any;
 };
+
 
 
 
