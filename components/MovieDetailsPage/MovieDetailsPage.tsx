@@ -734,90 +734,6 @@ const MovieCard1: any = styled(MovieCard)(({ theme }: any) =>({
   margin: `0px`,  
 }));
   
-const Row1: any = styled("div", {
-    shouldForwardProp: prop => !["data"].includes(prop.toString())
-  })(({ data }: any) =>({  
-  display: `flex`,  
-  position: `relative`,  
-  isolation: `isolate`,  
-  flexDirection: `row`,  
-  justifyContent: `flex-start`,  
-  alignItems: `flex-start`,  
-  padding: `0px`,  
-  boxSizing: `border-box`,  
-  margin: `0px 0px 0px 20px`,  
-  flexGrow: data.size === "desktop" ? `1` : "unset",  
-}));
-  
-const MovieCard2: any = styled(MovieCard)(({ theme }: any) =>({  
-  flexGrow: `1`,  
-  height: `180px`,  
-  margin: `0px`,  
-}));
-  
-const Row2: any = styled("div", {
-    shouldForwardProp: prop => !["data"].includes(prop.toString())
-  })(({ data }: any) =>({  
-  display: `flex`,  
-  position: `relative`,  
-  isolation: `isolate`,  
-  flexDirection: `row`,  
-  justifyContent: `flex-start`,  
-  alignItems: `flex-start`,  
-  padding: `0px`,  
-  boxSizing: `border-box`,  
-  margin: `0px 0px 0px 20px`,  
-  flexGrow: data.size === "desktop" ? `1` : "unset",  
-}));
-  
-const MovieCard3: any = styled(MovieCard)(({ theme }: any) =>({  
-  flexGrow: `1`,  
-  height: `180px`,  
-  margin: `0px`,  
-}));
-  
-const Row3: any = styled("div", {
-    shouldForwardProp: prop => !["data"].includes(prop.toString())
-  })(({ data }: any) =>({  
-  display: `flex`,  
-  position: `relative`,  
-  isolation: `isolate`,  
-  flexDirection: `row`,  
-  justifyContent: `flex-start`,  
-  alignItems: `flex-start`,  
-  padding: `0px`,  
-  boxSizing: `border-box`,  
-  margin: `0px 0px 0px 20px`,  
-  flexGrow: data.size === "desktop" ? `1` : "unset",  
-}));
-  
-const MovieCard4: any = styled(MovieCard)(({ theme }: any) =>({  
-  flexGrow: `1`,  
-  height: `180px`,  
-  margin: `0px`,  
-}));
-  
-const Row4: any = styled("div", {
-    shouldForwardProp: prop => !["data"].includes(prop.toString())
-  })(({ data }: any) =>({  
-  display: `flex`,  
-  position: `relative`,  
-  isolation: `isolate`,  
-  flexDirection: `row`,  
-  justifyContent: `flex-start`,  
-  alignItems: `flex-start`,  
-  padding: `0px`,  
-  boxSizing: `border-box`,  
-  margin: `0px 0px 0px 20px`,  
-  flexGrow: data.size === "desktop" ? `1` : "unset",  
-}));
-  
-const MovieCard5: any = styled(MovieCard)(({ theme }: any) =>({  
-  flexGrow: `1`,  
-  height: `180px`,  
-  margin: `0px`,  
-}));
-  
 const PageBtm: any = styled("div", {
     shouldForwardProp: prop => !["data"].includes(prop.toString())
   })(({ data }: any) =>({  
@@ -1102,21 +1018,13 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                   {`More Trailers & Videos`}
                     </MoreTrailersVideos>
                 <TrailerCards data={data} >
-                  <Row data={data} >
-                    <MovieCard1   />
-                  </Row>
-                  <Row1 data={data} >
-                    <MovieCard2   />
-                  </Row1>
-                  <Row2 data={data} >
-                    <MovieCard3   />
-                  </Row2>
-                  <Row3 data={data} >
-                    <MovieCard4   />
-                  </Row3>
-                  <Row4 data={data} >
-                    <MovieCard5   />
-                  </Row4>
+                  {data.movie.posterImages && data.movie.posterImages.map((image: any, index: number) => {
+                    return (
+                      <Row key={index} data={data} >
+                        <MovieCard1   image={image}/>
+                      </Row>
+                    )
+                  })}
                 </TrailerCards>
               </Vids>
               <PageBtm data={data} >

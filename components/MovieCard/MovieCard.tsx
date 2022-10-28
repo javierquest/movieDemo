@@ -32,8 +32,9 @@ const Property1Default: any = styled("div")({
   overflow: `hidden`,  
 });
   
-const Pic: any = styled("div")({  
-  backgroundImage: `url(assets/images/moviecard_pic.png)`,  
+const Pic: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   backgroundPosition: `center`,  
   backgroundSize: `cover`,  
   backgroundRepeat: `no-repeat`,  
@@ -46,7 +47,8 @@ const Pic: any = styled("div")({
   alignSelf: `stretch`,  
   height: `138px`,  
   margin: `0px`,  
-});
+  backgroundImage: `url${props.image.filePath}`,  
+}));
   
 const About: any = styled("div")({  
   display: `flex`,  
@@ -103,17 +105,21 @@ const Title: any = styled("div")(({ theme }: any) =>({
 function MovieCard(props: MovieCardProps): JSX.Element {
   return (
     <Property1Default  className={props.className}   >
-      <Pic >
+      <Pic props={props} >
       </Pic>
-      <About >
-        <AboutProduct >
-          <Text >
-            <Title >
-              {`Movie Title 1`}
-                </Title>
-          </Text>
-        </AboutProduct>
-      </About>
+      {(false) &&
+        <About >
+          <AboutProduct >
+            <Text >
+              {(false) &&
+                <Title >
+                  {`Movie Title 1`}
+                    </Title>
+              }
+            </Text>
+          </AboutProduct>
+        </About>
+      }
     </Property1Default>
   );
 }
