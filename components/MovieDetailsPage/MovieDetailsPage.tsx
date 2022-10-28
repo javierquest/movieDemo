@@ -1049,7 +1049,7 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                     </RunRelease>
                   </RateAndRun>
                   <Reviews >
-                    {(!!data.movie.ratings?.[0] && data.size !== "desktop") &&
+                    {(data.size !== "desktop" && !!data.movie.ratings?.[0]) &&
                       <RatingImdb data={data} >
                         <Q6810 >
                           {data.movie.ratings[0].Value}
@@ -1062,17 +1062,17 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                     {((data.size === "desktop")) &&
                       <RtIcon data={data}  src={`assets/images/MovieDetailsPage_rt_icon.png`} alt={"rt_icon"}/>
                     }
-                    {(!!data.movie.ratings?.[1]) &&
+                    {(data.size === "desktop" ? !!data.movie.ratings?.[0] : !!data.movie.ratings?.[1]) &&
                       <RatingRt data={data} >
                         <Q72 >
-                          {data.movie.ratings[1].Value}
+                          {((data.size === "desktop" ? data.movie.ratings[0] : data.movie.ratings[1])).Value}
                             </Q72>
                         <RottenTomatoes >
-                          {data.movie.ratings[1].Source}
+                          {((data.size === "desktop" ? data.movie.ratings[0] : data.movie.ratings[1])).Source}
                             </RottenTomatoes>
                       </RatingRt>
                     }
-                    {(!!data.movie.ratings?.[2]) &&
+                    {(data.size !== "desktop" && !!data.movie.ratings?.[2]) &&
                       <RatingIgn data={data} >
                         <Q610 >
                           {data.movie.ratings[2].Value}
