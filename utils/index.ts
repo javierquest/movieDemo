@@ -1,4 +1,3 @@
-import { string } from "prop-types";
 import { MODBMovieType, MODBMovieVideoType, MODBMoviewImageType, OmbdbMovieType } from "./types";
 
 const videoAcc: { name: string, videoIframe: string} [] = []; 
@@ -49,7 +48,7 @@ export const transformData = (
 ) => ({
   posterImage: `http://image.tmdb.org/t/p/w342/${movie.backdrop_path}`,
   imdbId: movie.imdb_id,
-  language: movie.original_language,
+  language: secondaryMovie.Language || movie.original_language,
   title: movie.original_title,
   posterSecondaryImage: `http://image.tmdb.org/t/p/w342/${movie.poster_path}`,
   plot: movie.overview,
@@ -57,10 +56,7 @@ export const transformData = (
   year: secondaryMovie.Year,
   director: secondaryMovie.Director,
   actors: secondaryMovie.Actors,
-  ratingsDesktop: (secondaryMovie.Ratings?.[0]) ? secondaryMovie.Ratings.filter(
-    ( { Source }) => Source === 'Rotten Tomatoes'
-  ) : [],
-  ratings: (secondaryMovie.Ratings?.[0]) ? secondaryMovie.Ratings : [],
+  ratings: (secondaryMovie.Ratings?.length) ? secondaryMovie.Ratings : [],
   videos: (videos && videos.results?.length) ? videos.results.reduce(
     (acc, { name, key, site } ) => {
       if (site === 'YouTube') {
@@ -79,4 +75,11 @@ export const transformData = (
   rated: secondaryMovie.Rated || [],
   runtime: secondaryMovie.Runtime || `${movie.runtime || 0} min`,
   releaseDate: secondaryMovie.Released || movie.release_date,
+  genres: (
+    movie.genres?.length ?
+      movie.genres.map(({ name }) => name)
+      : secondaryMovie.Genre ?
+        secondaryMovie.Genre.replaceAll(' ', '').split(',')
+        : []
+  ).map((genre) => genre.toLocaleLowerCase())
 });

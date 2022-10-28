@@ -1,7 +1,7 @@
 export interface MODBMovieType {
   backdrop_path: string | null;
   budge: number;
-  genres: { id: number, name: string} [];
+  genres: { name: string} [];
   id: number;
   imdb_id: number;
   original_language: string;
@@ -24,6 +24,8 @@ export interface OmbdbMovieType {
   Ratings: { Source: string, Value: string } [];
   Runtime: string | null;
   Released: string | null;
+  Language: string | null;
+  Genre: string | null;
 }
 
 export interface MODBMovieVideoType {
