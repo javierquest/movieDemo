@@ -974,7 +974,7 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
     return (
     <Property1Default  className={props.className}   data={data} >
       {(!props.isLoading || !data.isLoading) &&
-        <MovieNavbar1   />
+        <MovieNavbar1   size={data.size}/>
       }
       {(!props.isLoading || !data.isLoading) &&
         <TopAndMask >

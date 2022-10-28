@@ -18,19 +18,21 @@ import { styled } from '@mui/material/styles';
 import { MovieNavbarProps } from 'types';
 
  
-const ScreenDesktop: any = styled("div")({  
+const ScreenDesktop: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   backgroundColor: `rgba(0, 0, 0, 1)`,  
   boxShadow: `0px 3px 4px rgba(0, 0, 0, 0.25)`,  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
   flexDirection: `row`,  
-  width: `1440px`,  
+  width: props.size === "mobile" ? `375px` : "100%",  
   justifyContent: `flex-start`,  
   alignItems: `flex-start`,  
-  padding: `6px 80px`,  
+  padding: props.size === "mobile" ? `6px 14px` : `6px 80px`,  
   boxSizing: `border-box`,  
-});
+}));
   
 const Row: any = styled("div")({  
   display: `flex`,  
@@ -75,64 +77,72 @@ const Items: any = styled("div")({
   margin: `0px`,  
 });
   
-const Movies: any = styled("div")({  
+const Movies: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   textAlign: `center`,  
   whiteSpace: `pre-wrap`,  
-  color: `rgba(255, 255, 255, 1)`,  
+  color: props.size === "mobile" ? theme.palette["Background"]["Paper"] : `rgba(255, 255, 255, 1)`,  
   fontStyle: `normal`,  
   fontFamily: `Roboto`,  
-  fontWeight: `700`,  
+  fontWeight: props.size === "mobile" ? `400` : `700`,  
   fontSize: `14px`,  
-  letterSpacing: `0.14px`,  
+  letterSpacing: props.size === "mobile" ? `0px` : `0.14px`,  
   textDecoration: `none`,  
   textTransform: `none`,  
   margin: `0px`,  
-});
+}));
   
-const OurTheatres: any = styled("div")({  
+const OurTheatres: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   textAlign: `left`,  
   whiteSpace: `pre-wrap`,  
-  color: `rgba(255, 255, 255, 1)`,  
+  color: props.size === "mobile" ? theme.palette["Background"]["Paper"] : `rgba(255, 255, 255, 1)`,  
   fontStyle: `normal`,  
   fontFamily: `Roboto`,  
-  fontWeight: `700`,  
+  fontWeight: props.size === "mobile" ? `400` : `700`,  
   fontSize: `14px`,  
-  letterSpacing: `0.14px`,  
+  letterSpacing: props.size === "mobile" ? `0px` : `0.14px`,  
   textDecoration: `none`,  
   textTransform: `none`,  
   opacity: `0.6000000238418579`,  
   margin: `0px 0px 0px 40px`,  
-});
+}));
   
-const FoodDrink: any = styled("div")({  
+const FoodDrink: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   textAlign: `left`,  
   whiteSpace: `pre-wrap`,  
-  color: `rgba(255, 255, 255, 1)`,  
+  color: props.size === "mobile" ? theme.palette["Background"]["Paper"] : `rgba(255, 255, 255, 1)`,  
   fontStyle: `normal`,  
   fontFamily: `Roboto`,  
-  fontWeight: `700`,  
+  fontWeight: props.size === "mobile" ? `400` : `700`,  
   fontSize: `14px`,  
-  letterSpacing: `0.14px`,  
+  letterSpacing: props.size === "mobile" ? `0px` : `0.14px`,  
   textDecoration: `none`,  
   textTransform: `none`,  
   opacity: `0.6000000238418579`,  
   margin: `0px 0px 0px 40px`,  
-});
+}));
   
-const GiftCards: any = styled("div")({  
+const GiftCards: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   textAlign: `left`,  
   whiteSpace: `pre-wrap`,  
-  color: `rgba(255, 255, 255, 1)`,  
+  color: props.size === "mobile" ? theme.palette["Background"]["Paper"] : `rgba(255, 255, 255, 1)`,  
   fontStyle: `normal`,  
   fontFamily: `Roboto`,  
-  fontWeight: `700`,  
+  fontWeight: props.size === "mobile" ? `400` : `700`,  
   fontSize: `14px`,  
-  letterSpacing: `0.14px`,  
+  letterSpacing: props.size === "mobile" ? `0px` : `0.14px`,  
   textDecoration: `none`,  
   textTransform: `none`,  
   opacity: `0.6000000238418579`,  
   margin: `0px 0px 0px 40px`,  
-});
+}));
   
 const Hamburger: any = styled("img")({  
   height: `15px`,  
@@ -183,28 +193,30 @@ const Drop: any = styled("img")({
  
 function MovieNavbar(props: MovieNavbarProps): JSX.Element {
   return (
-    <ScreenDesktop  className={props.className}   >
+    <ScreenDesktop  className={props.className}   props={props} >
       <Row >
         <NuVueLogo  src={`assets/images/movienavbar_NuVue_Logo.png`} alt={"NuVue Logo"}/>
-        <MenuStructure >
-          <Items >
-            <Movies >
-              {`Movies`}
-                </Movies>
-            <OurTheatres >
-              {`Our Theatres`}
-                </OurTheatres>
-            <FoodDrink >
-              {`Food & Drink`}
-                </FoodDrink>
-            <GiftCards >
-              {`Gift Cards`}
-                </GiftCards>
-          </Items>
-          {false &&
-            <Hamburger  src={`assets/images/movienavbar_Hamburger.png`} alt={"Hamburger"}/>
-          }
-        </MenuStructure>
+        {(!(props.size === "mobile")) &&
+          <MenuStructure >
+            <Items >
+              <Movies props={props} >
+                {`Movies`}
+                  </Movies>
+              <OurTheatres props={props} >
+                {`Our Theatres`}
+                  </OurTheatres>
+              <FoodDrink props={props} >
+                {`Food & Drink`}
+                  </FoodDrink>
+              <GiftCards props={props} >
+                {`Gift Cards`}
+                  </GiftCards>
+            </Items>
+            {false &&
+              <Hamburger  src={`assets/images/movienavbar_Hamburger.png`} alt={"Hamburger"}/>
+            }
+          </MenuStructure>
+        }
         <RightSide >
           <Search  src={`assets/images/movienavbar_search.png`} alt={"search"}/>
           <Profile >
