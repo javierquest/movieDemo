@@ -1149,7 +1149,7 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
         </TopAndMask>
       }
       {(!props.isLoading || !data.isLoading) &&
-        <MovieFooter1   />
+        <MovieFooter1   size={data.size}/>
       }
     </Property1Default>
   );

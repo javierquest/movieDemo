@@ -18,46 +18,54 @@ import { styled } from '@mui/material/styles';
 import { MovieFooterProps } from 'types';
 
  
-const Property1Desktop: any = styled("div")({  
+const Property1Desktop: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   backgroundColor: `rgba(23, 23, 23, 1)`,  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
   flexDirection: `column`,  
-  width: "100%",  
+  width: props.size === "tablet" ? `768px` : props.size === "mobile" ? `375px` : "100%",  
   justifyContent: `flex-start`,  
-  alignItems: `center`,  
+  alignItems: props.size === "tablet" ? `flex-start` : props.size === "mobile" ? `flex-start` : `center`,  
   padding: `0px`,  
   boxSizing: `border-box`,  
-});
+}));
   
-const FooterContent: any = styled("div")({  
+const FooterContent: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
   flexDirection: `column`,  
   justifyContent: `flex-start`,  
   alignItems: `center`,  
-  padding: `50px 180px 30px 180px`,  
+  padding: props.size === "tablet" ? `0px 0px 50px 0px` : props.size === "mobile" ? `40px 0px` : `50px 180px 30px 180px`,  
   boxSizing: `border-box`,  
   alignSelf: `stretch`,  
   margin: `0px`,  
-});
+}));
   
-const FooterCentered: any = styled("div")({  
+const FooterCentered: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
-  flexDirection: `row`,  
-  justifyContent: `space-between`,  
+  flexDirection: props.size === "mobile" ? `column` : `row`,  
+  justifyContent: props.size === "mobile" ? `flex-start` : `space-between`,  
   alignItems: `flex-start`,  
-  padding: `0px 50px`,  
+  padding: props.size === "tablet" ? `50px 50px 0px 50px` : props.size === "mobile" ? `0px 44px` : `0px 50px`,  
   boxSizing: `border-box`,  
   alignSelf: `stretch`,  
   margin: `0px`,  
-});
+}));
   
-const Social: any = styled("div")({  
+const Social: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
@@ -66,7 +74,8 @@ const Social: any = styled("div")({
   alignItems: `flex-start`,  
   padding: `0px`,  
   boxSizing: `border-box`,  
-});
+  margin: props.size === "mobile" ? `0px` : "unset",  
+}));
   
 const NuVueLogo: any = styled("div")({  
   display: `flex`,  
@@ -90,7 +99,9 @@ const Vector: any = styled("img")({
   top: `0px`,  
 });
   
-const SocialLinks: any = styled("div")({  
+const SocialLinks: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
@@ -99,9 +110,9 @@ const SocialLinks: any = styled("div")({
   alignItems: `flex-start`,  
   padding: `0px`,  
   boxSizing: `border-box`,  
-  margin: `43px 0px 0px 0px`,  
+  margin: props.size === "tablet" ? `39px 0px 0px 0px` : props.size === "mobile" ? `40px 0px 0px 0px` : `43px 0px 0px 0px`,  
   overflow: `hidden`,  
-});
+}));
   
 const Social1: any = styled("div")({  
   textAlign: `left`,  
@@ -166,16 +177,19 @@ const Instagram: any = styled(Link)({
   margin: `8px 0px 0px 0px`,  
 });
   
-const Column1: any = styled("div")({  
+const Column1: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
   flexDirection: `column`,  
   justifyContent: `flex-start`,  
   alignItems: `flex-start`,  
-  padding: `58px 0px 0px 0px`,  
+  padding: props.size === "tablet" ? `54px 0px 0px 0px` : props.size === "mobile" ? `0px` : `58px 0px 0px 0px`,  
   boxSizing: `border-box`,  
-});
+  margin: props.size === "mobile" ? `38px 0px 0px 0px` : "unset",  
+}));
   
 const Links1: any = styled("div")({  
   display: `flex`,  
@@ -276,16 +290,19 @@ const Dolby: any = styled(Link)({
   margin: `8px 0px 0px 0px`,  
 });
   
-const Column2: any = styled("div")({  
+const Column2: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
-  flexDirection: `column`,  
+  flexDirection: props.size === "mobile" ? `row` : `column`,  
   justifyContent: `flex-start`,  
   alignItems: `flex-start`,  
-  padding: `58px 0px 0px 0px`,  
+  padding: props.size === "tablet" ? `54px 0px 0px 0px` : props.size === "mobile" ? `0px` : `58px 0px 0px 0px`,  
   boxSizing: `border-box`,  
-});
+  margin: props.size === "mobile" ? `38px 0px 0px 0px` : "unset",  
+}));
   
 const Link2: any = styled("div")({  
   display: `flex`,  
@@ -375,18 +392,23 @@ const GroupsEvents: any = styled(Link)({
   margin: `8px 0px 0px 0px`,  
 });
   
-const Column3: any = styled("div")({  
+const Column3: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
-  flexDirection: `column`,  
+  flexDirection: props.size === "mobile" ? `row` : `column`,  
   justifyContent: `flex-start`,  
   alignItems: `flex-start`,  
-  padding: `58px 0px 0px 0px`,  
+  padding: props.size === "tablet" ? `54px 0px 0px 0px` : props.size === "mobile" ? `0px` : `58px 0px 0px 0px`,  
   boxSizing: `border-box`,  
-});
+  margin: props.size === "mobile" ? `38px 0px 0px 0px` : "unset",  
+}));
   
-const Link4: any = styled("div")({  
+const Link4: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
@@ -396,9 +418,12 @@ const Link4: any = styled("div")({
   padding: `0px`,  
   boxSizing: `border-box`,  
   margin: `0px`,  
-});
+  width: props.size === "mobile" ? `110px` : "unset",  
+}));
   
-const More: any = styled("div")({  
+const More: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   textAlign: `left`,  
   whiteSpace: `pre-wrap`,  
   color: `rgba(255, 255, 255, 1)`,  
@@ -410,9 +435,9 @@ const More: any = styled("div")({
   textDecoration: `none`,  
   lineHeight: `24px`,  
   textTransform: `none`,  
-  width: `119px`,  
+  width: props.size === "tablet" ? "unset" : props.size === "mobile" ? "unset" : `119px`,  
   margin: `0px`,  
-});
+}));
   
 const Jobs: any = styled(Link)({  
   color: `rgba(151, 151, 151, 1)`,  
@@ -498,19 +523,21 @@ const Line: any = styled("div")({
   margin: `0px`,  
 });
   
-const Btm: any = styled("div")({  
+const Btm: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   display: `flex`,  
   position: `relative`,  
   isolation: `isolate`,  
   flexDirection: `row`,  
   justifyContent: `space-between`,  
   alignItems: `center`,  
-  padding: `0px 230px`,  
+  padding: props.size === "tablet" ? `0px 50px` : props.size === "mobile" ? `0px 44px` : `0px 230px`,  
   boxSizing: `border-box`,  
   alignSelf: `stretch`,  
   margin: `15px 0px 0px 0px`,  
   overflow: `hidden`,  
-});
+}));
   
 const Left: any = styled("div")({  
   display: `flex`,  
@@ -523,20 +550,22 @@ const Left: any = styled("div")({
   boxSizing: `border-box`,  
 });
   
-const ThisSiteWasProudl: any = styled("div")({  
+const ThisSiteWasProudl: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   textAlign: `left`,  
   whiteSpace: `pre-wrap`,  
   color: `rgba(255, 255, 255, 1)`,  
   fontStyle: `normal`,  
   fontFamily: `Roboto`,  
   fontWeight: `700`,  
-  fontSize: `14px`,  
+  fontSize: props.size === "mobile" ? `10px` : `14px`,  
   letterSpacing: `0px`,  
   textDecoration: `none`,  
   lineHeight: `21px`,  
   textTransform: `none`,  
   margin: `0px`,  
-});
+}));
   
 const Right: any = styled("div")({  
   display: `flex`,  
@@ -550,46 +579,50 @@ const Right: any = styled("div")({
   overflow: `hidden`,  
 });
   
-const Pp: any = styled("div")({  
+const Pp: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   textAlign: `left`,  
   whiteSpace: `pre-wrap`,  
   color: `rgba(255, 255, 255, 1)`,  
   fontStyle: `normal`,  
   fontFamily: `Roboto`,  
   fontWeight: `700`,  
-  fontSize: `14px`,  
+  fontSize: props.size === "mobile" ? `10px` : `14px`,  
   letterSpacing: `0px`,  
   textDecoration: `none`,  
   lineHeight: `21px`,  
   textTransform: `none`,  
   margin: `0px`,  
-});
+}));
   
-const Terms: any = styled("div")({  
+const Terms: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ props }: any) =>({  
   textAlign: `left`,  
   whiteSpace: `pre-wrap`,  
   color: `rgba(255, 255, 255, 1)`,  
   fontStyle: `normal`,  
   fontFamily: `Roboto`,  
   fontWeight: `700`,  
-  fontSize: `14px`,  
+  fontSize: props.size === "mobile" ? `10px` : `14px`,  
   letterSpacing: `0px`,  
   textDecoration: `none`,  
   lineHeight: `21px`,  
   textTransform: `none`,  
-  margin: `0px 0px 0px 34px`,  
-});
+  margin: props.size === "mobile" ? `0px 0px 0px 10px` : `0px 0px 0px 34px`,  
+}));
  
 function MovieFooter(props: MovieFooterProps): JSX.Element {
   return (
-    <Property1Desktop  className={props.className}   >
-      <FooterContent >
-        <FooterCentered >
-          <Social >
+    <Property1Desktop  className={props.className}   props={props} >
+      <FooterContent props={props} >
+        <FooterCentered props={props} >
+          <Social props={props} >
             <NuVueLogo >
               <Vector  src={`assets/images/moviefooter_Vector.png`} alt={"Vector"}/>
             </NuVueLogo>
-            <SocialLinks >
+            <SocialLinks props={props} >
               <Social1 >
                 {`Social`}
                   </Social1>
@@ -599,7 +632,7 @@ function MovieFooter(props: MovieFooterProps): JSX.Element {
               <Instagram href="#" underline="hover"  >Instagram</Instagram>
             </SocialLinks>
           </Social>
-          <Column1 >
+          <Column1 props={props} >
             <Links1 >
               <Movies >
                 {`Movies`}
@@ -612,7 +645,7 @@ function MovieFooter(props: MovieFooterProps): JSX.Element {
               <Dolby href="#" underline="hover"  >Dolby Cinema</Dolby>
             </Links1>
           </Column1>
-          <Column2 >
+          <Column2 props={props} >
             <Link2 >
               <OurCompany >
                 {`Our Company`}
@@ -624,9 +657,9 @@ function MovieFooter(props: MovieFooterProps): JSX.Element {
               <GroupsEvents href="#" underline="hover"  >Groups & Events</GroupsEvents>
             </Link2>
           </Column2>
-          <Column3 >
-            <Link4 >
-              <More >
+          <Column3 props={props} >
+            <Link4 props={props} >
+              <More props={props} >
                 {`More`}
                   </More>
               <Jobs href="#" underline="hover"  >Jobs</Jobs>
@@ -641,17 +674,17 @@ function MovieFooter(props: MovieFooterProps): JSX.Element {
       <MadeWith >
         <Line >
         </Line>
-        <Btm >
+        <Btm props={props} >
           <Left >
-            <ThisSiteWasProudl >
+            <ThisSiteWasProudl props={props} >
               {`© Copyright 2022`}
                 </ThisSiteWasProudl>
           </Left>
           <Right >
-            <Pp >
+            <Pp props={props} >
               {`Privacy Policy`}
                 </Pp>
-            <Terms >
+            <Terms props={props} >
               {`Terms of Service`}
                 </Terms>
           </Right>
