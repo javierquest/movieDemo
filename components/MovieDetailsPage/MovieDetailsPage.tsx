@@ -35,7 +35,7 @@ const Property1Default: any = styled("div", {
   position: `relative`,  
   isolation: `isolate`,  
   flexDirection: `column`,  
-  width: data.size === "desktop" ? "90%" : "100%",  
+  width: data.size === "desktop" ? "90%" : "100vw",  
   justifyContent: `flex-start`,  
   alignItems: `center`,  
   padding: `0px`,  
