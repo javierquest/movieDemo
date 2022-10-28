@@ -1082,7 +1082,7 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                     }
                   </Reviews>
                   <GenreChips >
-                    {data.movie.genres?.length ? data.movie.genres : [] && data.movie.genres?.length ? data.movie.genres : [].map((genre: any, index: number) => {
+                    {data.movie.genres && data.movie.genres.map((genre: any, index: number) => {
                       return (
                         <Genre1  key={index}  genres={ genre }/>
                       )
