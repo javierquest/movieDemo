@@ -13,7 +13,6 @@
 **********************************************************************/
 
 import React from 'react';
-import { Popover, Dialog } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import MovieNavbar from 'components/MovieNavbar/MovieNavbar';
 import TabDesktopBtn1 from 'components/TabDesktopBtn1/TabDesktopBtn1';
@@ -1022,20 +1021,7 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                   {data.movie.backdropsImages && data.movie.backdropsImages.map((image: any, index: number) => {
                     return (
                       <Row key={index} data={data} >
-                        <Popover  
-                          marginThreshold={0}
-                          anchorEl={undefined}
-                          anchorOrigin={{vertical: 'top', horizontal: 'left'}}
-                          transformOrigin={{vertical: 'top', horizontal: 'left'}}
-                          keepMounted
-                          transitionDuration={0}
-                          open={undefined}
-                          onClose={undefined}
-                        >
-                          <Dialog  id={1} open={true} onClose={undefined}>
-                            <MovieCard1   image={image}/>
-                          </Dialog>
-                        </Popover>
+                        <MovieCard1   image={image}/>
                       </Row>
                     )
                   })}
