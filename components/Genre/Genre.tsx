@@ -17,7 +17,9 @@ import { styled } from '@mui/material/styles';
 import { GenreProps } from 'types';
 
  
-const GenreBiography: any = styled("div")(({ theme }: any) =>({  
+const GenreBiography: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ theme, props }: any) =>({  
   backgroundColor: theme.palette["Primary"]["Contrast"],  
   border: `1px solid theme.customShadows["Light"]["Text"]["Disabled"].color`,  
   boxSizing: `border-box`,  
@@ -29,7 +31,7 @@ const GenreBiography: any = styled("div")(({ theme }: any) =>({
   justifyContent: `flex-start`,  
   alignItems: `flex-start`,  
   padding: `6px 16px`,  
-  width: "100%",  
+  width: props.genres.some((g) => g === 'drama') ? "unset" : props.genres.some((g) => g === 'action') ? "unset" : props.genres.some((g) => g === 'horror') ? "unset" : props.genres.some((g) => g === 'comedy') ? "unset" : props.genres.some((g) => g === 'fantasy') ? "unset" : props.genres.some((g) => g === 'adventure') ? "unset" : props.genres.some((g) => g === 'crime') ? "unset" : props.genres.some((g) => g === 'romance') ? "unset" : props.genres.some((g) => g === 'mystery') ? "unset" : props.genres.some((g) => g === 'thriller') ? "unset" : props.genres.some((g) => g === 'western') ? "unset" : props.genres.some((g) => g === 'history') ? "unset" : props.genres.some((g) => g === 'animation') ? "unset" : props.genres.some((g) => g === 'music') ? "unset" : props.genres.some((g) => g === 'sports') ? "unset" : props.genres.some((g) => g === 'science fiction') ? "unset" : props.genres.some((g) => g === 'kids') ? "unset" : "100%",  
 }));
   
 const Genre1: any = styled("div")(({ theme }: any) =>({  
@@ -48,10 +50,10 @@ const Genre1: any = styled("div")(({ theme }: any) =>({
  
 function Genre(props: GenreProps): JSX.Element {
   return (
-    (props.genre?.length) &&
-      <GenreBiography  className={props.className}   >
+    (props.genres?.length) &&
+      <GenreBiography  className={props.className}   props={props} >
         <Genre1 >
-          {`Biography`}
+          {props.genres.some((g) => g === 'drama') ? `Drama` : props.genres.some((g) => g === 'action') ? `Action` : props.genres.some((g) => g === 'horror') ? `Horror` : props.genres.some((g) => g === 'comedy') ? `Comedy` : props.genres.some((g) => g === 'fantasy') ? `Fantasy` : props.genres.some((g) => g === 'adventure') ? `Adventure` : props.genres.some((g) => g === 'crime') ? `Crime` : props.genres.some((g) => g === 'romance') ? `Romance` : props.genres.some((g) => g === 'mystery') ? `Mystery` : props.genres.some((g) => g === 'thriller') ? `Thriller` : props.genres.some((g) => g === 'western') ? `Western` : props.genres.some((g) => g === 'history') ? `History` : props.genres.some((g) => g === 'animation') ? `Animation` : props.genres.some((g) => g === 'music') ? `Music` : props.genres.some((g) => g === 'sports') ? `Sports` : props.genres.some((g) => g === 'science fiction') ? `Sci-fi` : props.genres.some((g) => g === 'kids') ? `Kids` :  `Biography`}
             </Genre1>
       </GenreBiography>
   );
