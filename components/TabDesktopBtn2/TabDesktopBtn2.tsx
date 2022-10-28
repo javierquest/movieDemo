@@ -29,7 +29,7 @@ const MouseOff: any = styled("div")({
   justifyContent: `flex-start`,  
   alignItems: `flex-start`,  
   padding: `10px 26px`,  
-  width: "100vw",  
+  width: "100%",  
 });
   
 const Genre: any = styled("div")({  
