@@ -36,7 +36,10 @@ const processImages = (images: MODBMoviewImageType) => {
       });
     }
   }
-  return processedImages;
+  return {
+    posterImages: processedImages.poster.length ? processedImages.poster.slice(0, 4) : [],
+    backdropsImages: processedImages.backdrops.length ? processedImages.backdrops.slice(0, 4) : [],
+  };
 }
 
 
@@ -71,7 +74,7 @@ export const transformData = (
       return acc;
     }, videoAcc
   ) : [],
-  otherImages: processImages(images),
+  ...processImages(images),
   rated: secondaryMovie.Rated || [],
   runtime: secondaryMovie.Runtime || `${movie.runtime || 0} min`,
   releaseDate: secondaryMovie.Released || movie.release_date,

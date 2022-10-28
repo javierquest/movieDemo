@@ -45,7 +45,6 @@
          const secondMovie = await (await fetch(`${MOVIE_SECOND_SOURCE_API_BASE_PATH}&i=${movie.imdb_id}&plot=full`)).json();
  
          const movieDataConsolidated = transformData(movie, movieTrailers, images, secondMovie);
-         console.log(movieDataConsolidated)
          setMovie(movieDataConsolidated);
          setIsLoading(false);
  
@@ -53,7 +52,6 @@
      }
    }, [isLoading]);
    const size = useResponsiveSize();
- 
  
    let data: any = { size, isLoading, movie };
  
