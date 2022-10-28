@@ -1084,7 +1084,7 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                   <GenreChips >
                     {data.movie.genres && data.movie.genres.map((genre: any, index: number) => {
                       return (
-                        <Genre1  key={index}  genres={ genre }/>
+                        <Genre1  key={index}  genre={ genre }/>
                       )
                     })}
                   </GenreChips>
