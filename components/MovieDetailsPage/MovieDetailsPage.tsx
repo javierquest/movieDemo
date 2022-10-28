@@ -1086,8 +1086,8 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                     }
                   </Reviews>
                   <GenreChips >
-                    <Genre1   genres={props.genres}/>
-                    <Genre2   genres={props.genres}/>
+                    <Genre1   genres={data.movie.genres}/>
+                    <Genre2   genres={data.movie.genres}/>
                   </GenreChips>
                 </TopPart>
                 {((data.size === "desktop")) &&
