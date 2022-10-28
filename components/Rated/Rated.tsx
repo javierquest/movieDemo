@@ -17,7 +17,9 @@ import { styled } from '@mui/material/styles';
 import { RatedProps } from 'types';
 
  
-const RatedG: any = styled("div")(({ theme }: any) =>({  
+const RatedG: any = styled("div", {
+    shouldForwardProp: prop => !["props"].includes(prop.toString())
+  })(({ theme, props }: any) =>({  
   backgroundColor: theme.palette["Primary"]["Contrast"],  
   border: `0.7008928656578064px solid theme.customShadows["Light"]["Text"]["Disabled"].color`,  
   boxSizing: `border-box`,  
@@ -29,7 +31,7 @@ const RatedG: any = styled("div")(({ theme }: any) =>({
   justifyContent: `center`,  
   alignItems: `center`,  
   padding: `4px 6px`,  
-  width: "100%",  
+  width: props.rated=== 'PG' || (props.rated !== 'PG-13' && props.rated !== 'R') ? "unset" : props.rated === 'PG-13' ? "unset" : props.rated=== 'R' ? "unset" : "100%",  
 }));
   
 const Rated1: any = styled("div")(({ theme }: any) =>({  
@@ -62,12 +64,12 @@ const Rating: any = styled("div")(({ theme }: any) =>({
  
 function Rated(props: RatedProps): JSX.Element {
   return (
-    <RatedG  className={props.className}   >
+    <RatedG  className={props.className}   props={props} >
       <Rated1 >
         {`Rated:`}
           </Rated1>
       <Rating >
-        {props.rated}
+        {props.rated=== 'PG' || (props.rated !== 'PG-13' && props.rated !== 'R') ? `PG` : props.rated === 'PG-13' ? `PG-13` : props.rated=== 'R' ? `R` :  `G`}
           </Rating>
     </RatedG>
   );
