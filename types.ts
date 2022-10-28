@@ -14,10 +14,12 @@
 **********************************************************************/
 
 
+
 export interface RatedProps {
   className?: any;
   rated: any;
 };
+
 
 
 export interface GenreProps {
@@ -25,9 +27,11 @@ export interface GenreProps {
 };
 
 
+
 export interface MovieNavbarProps {
   className?: any;
 };
+
 
 
 export interface TabMobileBtn2Props {
@@ -35,9 +39,11 @@ export interface TabMobileBtn2Props {
 };
 
 
+
 export interface TabDesktopBtn2Props {
   className?: any;
 };
+
 
 
 export interface TabMobileBtn1Props {
@@ -45,9 +51,12 @@ export interface TabMobileBtn1Props {
 };
 
 
+
 export interface LanguageProps {
   className?: any;
+  language: any;
 };
+
 
 
 export interface MovieCardProps {
@@ -55,15 +64,18 @@ export interface MovieCardProps {
 };
 
 
+
 export interface MovieFooterProps {
   className?: any;
 };
+
 
 
 export interface MovieDetailsPageProps {
   className?: any;
   isLoading: any;
 };
+
 
 
 export interface TabDesktopBtn1Props {

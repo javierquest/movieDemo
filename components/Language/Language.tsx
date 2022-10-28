@@ -15,7 +15,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { LanguageProps } from 'types';
-import useLanguage from 'components/Language/useLanguage';
+
  
 const RatedG: any = styled("div")(({ theme }: any) =>({  
   backgroundColor: theme.palette["Primary"]["Contrast"],  
@@ -61,14 +61,13 @@ const Language1: any = styled("div")(({ theme }: any) =>({
 }));
  
 function Language(props: LanguageProps): JSX.Element {
-  const {data} = useLanguage();
-    return (
+  return (
     <RatedG  className={props.className}   >
       <Lang >
         {`Lang:`}
           </Lang>
       <Language1 >
-        {data.movie.language}
+        {props.language}
           </Language1>
     </RatedG>
   );
