@@ -630,6 +630,10 @@ const Genre1: any = styled(Genre)(({ theme }: any) =>({
   margin: `0px`,  
 }));
   
+const Genre2: any = styled(Genre)(({ theme }: any) =>({  
+  margin: `0px 0px 0px 12px`,  
+}));
+  
 const TopPlot: any = styled("div", {
     shouldForwardProp: prop => !["data"].includes(prop.toString())
   })(({ data }: any) =>({  
@@ -1082,11 +1086,8 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                     }
                   </Reviews>
                   <GenreChips >
-                    {data.movie.genres?.length ? data.movie.genres : [] && data.movie.genres?.length ? data.movie.genres : [].map((genre: any, index: number) => {
-                      return (
-                        <Genre1  key={index}  genres={ genre }/>
-                      )
-                    })}
+                    <Genre1   genres={ genre }/>
+                    <Genre2   genres={ genre }/>
                   </GenreChips>
                 </TopPart>
                 {((data.size === "desktop")) &&
