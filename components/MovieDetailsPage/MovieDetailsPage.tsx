@@ -1028,8 +1028,8 @@ function MovieDetailsPage(props: MovieDetailsPageProps): JSX.Element {
                   }
                   <RateAndRun data={data} >
                     <RatingLang >
-                      <Rated1   />
-                      <Language1   />
+                      <Rated1   rated={data.movie.rated}/>
+                      <Language1   language={data.movie.language}/>
                     </RatingLang>
                     <RunRelease >
                       <RunTime data={data} >
