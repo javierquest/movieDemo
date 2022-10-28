@@ -47,7 +47,6 @@
          const movieDataConsolidated = transformData(movie, movieTrailers, images, secondMovie);
          setMovie(movieDataConsolidated);
          setIsLoading(false);
- 
        })();
      }
    }, [isLoading]);
