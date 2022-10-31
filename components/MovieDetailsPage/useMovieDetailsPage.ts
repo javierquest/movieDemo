@@ -10,53 +10,75 @@
  *
  **********************************************************************/
 
- import React, { useEffect, useState } from 'react';
- import useResponsiveSize from 'hooks/useResponsiveSize';
- import { MODBMovieType, MODBMovieVideoType, MODBMoviewImageType } from 'utils/types';
- import { transformData } from 'utils';
- 
- const MOVIE_API_BASE_PATH = 'https://api.themoviedb.org/3';
- const MOVIE_API_KEY= '3017a8aa683782d5492b916133b6b6d7';
- const MOVIE_PATH = '/movie/';
- const MOVIE_VIDEO_PATH='/videos';
- const MOVIE_IMAGE_PATH='/images'
- const MOVIE_ID='436270';
- 
- const MOVIE_SECOND_SOURCE_API_BASE_PATH = 'https://www.omdbapi.com/?apikey=6a3e6ce';
- 
- const useMovieDetailsPage = (moviePath = MOVIE_ID) => {
-   const [isLoading, setIsLoading] = useState<boolean>(true);
-   const [movie, setMovie] = useState<any>({});
- 
-   useEffect(() => {
-     if (isLoading) {
-       (async() => {
-         const moviesEndpoints = [
-           `${MOVIE_API_BASE_PATH}${MOVIE_PATH}${moviePath}?api_key=${MOVIE_API_KEY}&lanaguage=en-US`,
-           `${MOVIE_API_BASE_PATH}${MOVIE_PATH}${moviePath}${MOVIE_VIDEO_PATH}?api_key=${MOVIE_API_KEY}&lanaguage=en-US`,
-           `${MOVIE_API_BASE_PATH}${MOVIE_PATH}${moviePath}${MOVIE_IMAGE_PATH}?api_key=${MOVIE_API_KEY}`
-         ];
-         const [movie, movieTrailers, images] = await Promise.all(moviesEndpoints.map(
-           async (url) => {
-             const response = await fetch(url);
-             return response.json();
-           }
-         ));
-         const secondMovie = await (await fetch(`${MOVIE_SECOND_SOURCE_API_BASE_PATH}&i=${movie.imdb_id}&plot=full`)).json();
- 
-         const movieDataConsolidated = transformData(movie, movieTrailers, images, secondMovie);
-         setMovie(movieDataConsolidated);
-         setIsLoading(false);
-       })();
-     }
-   }, [isLoading]);
-   const size = useResponsiveSize();
- 
-   let data: any = { size, isLoading, movie };
- 
-   let fns: any = {};
-   return { data, fns };
- };
- 
- export default useMovieDetailsPage;
- 
+import useResponsiveSize from 'hooks/useResponsiveSize';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { transformData } from 'utils';
+
+const MOVIE_API_BASE_PATH = 'https://api.themoviedb.org/3';
+const MOVIE_API_KEY = '3017a8aa683782d5492b916133b6b6d7';
+const MOVIE_PATH = '/movie/';
+const MOVIE_VIDEO_PATH = '/videos';
+const MOVIE_IMAGE_PATH = '/images';
+const MOVIE_ID = '436270';
+
+const MOVIE_SECOND_SOURCE_API_BASE_PATH =
+  'https://www.omdbapi.com/?apikey=6a3e6ce';
+
+const useMovieDetailsPage = () => {
+  const router = useRouter();
+  const { mid } = router.query;
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [movie, setMovie] = useState<any>({});
+  const [movieId, setMovieId] = useState<string>();
+
+  useEffect(() => {
+    if (mid && !Array.isArray(mid)) {
+      setMovieId(mid);
+    }
+  }, [mid]);
+
+  useEffect(() => {
+    if (isLoading && movieId) {
+      (async () => {
+        const moviesEndpoints = [
+          `${MOVIE_API_BASE_PATH}${MOVIE_PATH}${mid}?api_key=${MOVIE_API_KEY}&lanaguage=en-US`,
+          `${MOVIE_API_BASE_PATH}${MOVIE_PATH}${mid}${MOVIE_VIDEO_PATH}?api_key=${MOVIE_API_KEY}&lanaguage=en-US`,
+          `${MOVIE_API_BASE_PATH}${MOVIE_PATH}${mid}${MOVIE_IMAGE_PATH}?api_key=${MOVIE_API_KEY}`,
+        ];
+        const [movie, movieTrailers, images] = await Promise.all(
+          moviesEndpoints.map(async (url) => {
+            const response = await fetch(url);
+            if (response.status === 200) {
+              return response.json();
+            }
+            return {};
+          })
+        );
+          const secondMovie = await (
+            await fetch(
+              `${MOVIE_SECOND_SOURCE_API_BASE_PATH}&i=${movie.imdb_id}&plot=full`
+            )
+          ).json();
+
+          const movieDataConsolidated = transformData(
+            movie,
+            movieTrailers,
+            images,
+            secondMovie
+          );
+          setMovie(movieDataConsolidated);
+        
+        setIsLoading(false);
+      })();
+    }
+  }, [isLoading, movieId]);
+  const size = useResponsiveSize();
+
+  let data: any = { size, isLoading, movie };
+
+  let fns: any = {};
+  return { data, fns };
+};
+
+export default useMovieDetailsPage;

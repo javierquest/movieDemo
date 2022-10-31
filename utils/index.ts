@@ -51,7 +51,7 @@ export const transformData = (
 ) => ({
   posterImage: `http://image.tmdb.org/t/p/w342/${movie.backdrop_path}`,
   imdbId: movie.imdb_id,
-  language: secondaryMovie.Language || movie.original_language,
+  language: (secondaryMovie.Language && secondaryMovie.Language.split(',')[0]) || movie.original_language,
   title: movie.original_title,
   posterSecondaryImage: `http://image.tmdb.org/t/p/w342/${movie.poster_path}`,
   plot: movie.overview,
